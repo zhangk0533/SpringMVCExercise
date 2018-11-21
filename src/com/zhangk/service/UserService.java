@@ -23,6 +23,7 @@ public class UserService {
 		this.sessionFactory = sessionFactory;
 	}
 
+	//11
 	public void add(User user){
 		Session session = sessionFactory.getCurrentSession();
 		session.save(user);
