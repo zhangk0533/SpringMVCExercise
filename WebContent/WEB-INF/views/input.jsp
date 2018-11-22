@@ -33,24 +33,25 @@
 <c:if test="${user.id==null }">
 
 </c:if>
-<form:form action="userSaveOrUpdate" method="POST" modelAttribute="user" >
-<input type="hidden" name="_method" value="PUT" >
-<form:hidden path="id"/><br>
-name:<form:input path="name"/><br>
-age:<form:input path="age"/><br>
-<%
-	Map<String,String> genders = new HashMap();
-	genders.put("0", "ÄĞ");
-	genders.put("1","Å®");
-	request.setAttribute("genders", genders);
-%>
-gender:<form:radiobuttons path="gender" items="${genders}" /><br>
-city:<form:input path="address.city"/><br>
-street:<form:input path="address.street"/><br>
-<input type="submit" value="Submit">
 
-
-</form:form>
+<c:if test="${user.id==null }">
+	<form:form action="userSaveOrUpdate" method="POST" modelAttribute="user" >
+	<input type="hidden" name="_method" value="PUT" >
+	<form:hidden path="id"/><br>
+	name:<form:input path="name"/><br>
+	age:<form:input path="age"/><br>
+	<%
+		Map<String,String> genders = new HashMap();
+		genders.put("0", "ÄĞ");
+		genders.put("1","Å®");
+		request.setAttribute("genders", genders);
+	%>
+	gender:<form:radiobuttons path="gender" items="${genders}" /><br>
+	city:<form:input path="address.city"/><br>
+	street:<form:input path="address.street"/><br>
+	<input type="submit" value="Submit">
+	</form:form>
+</c:if>
 
 </body>
 </html>
