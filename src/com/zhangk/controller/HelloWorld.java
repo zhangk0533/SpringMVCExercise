@@ -44,7 +44,7 @@ public class HelloWorld {
 	
 	@RequestMapping("/testUserService")
 	public String testUserService(User user){
-		userService.add(user);
+		userService.addOrUpdate(user);
 		return "success";
 	}
 

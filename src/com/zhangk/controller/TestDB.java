@@ -26,7 +26,7 @@ public class TestDB {
 	@RequestMapping("/testHibernate")
 	public String testHibernate(User user){
 		System.out.println(user);
-		userService.add(user);
+		userService.addOrUpdate(user);
 		
 		
 		return "success";
