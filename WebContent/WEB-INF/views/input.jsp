@@ -30,12 +30,26 @@
 </form>
  -->
 
-<c:if test="${user.id==null }">
+<c:if test="${user.id==0 }">
+	<form action="userSave" method="post">
+
+		name:<input type="text" name="name" ><br>
+		age:<input type="text" name="age" ><br>
+		gender:<input type="radio" name="gender" value="0">ÄÐ
+			<input type="radio" name="gender" value="1">Å®
+		<br>
+		
+		
+		city:<input type="text" name="address.city" ><br>
+		street:<input type="text" name="address.street" ><br>
+		 
+		<input type="submit" value="submit">
+	</form>
 
 </c:if>
 
-<c:if test="${user.id==null }">
-	<form:form action="userSaveOrUpdate" method="POST" modelAttribute="user" >
+<c:if test="${user.id!=0 }">
+	<form:form action="${pageContext.request.contextPath }/userUpdate" method="POST" modelAttribute="user" >
 	<input type="hidden" name="_method" value="PUT" >
 	<form:hidden path="id"/><br>
 	name:<form:input path="name"/><br>

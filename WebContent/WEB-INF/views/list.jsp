@@ -6,13 +6,26 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=GB18030">
 <title>Insert title here</title>
+<script type="text/javascript" src="scripts/jquery-1.4.4.min.js"></script>
+<script type="text/javascript">
+	$(function(){
+		$(".delete").click(function(){
+			var href = $(this).attr("href");
+			$(".deleteForm").attr("action",href).submit();
+			return false;
+		});
+		
+	})
+</script>
 </head>
 <body>
+<form class="deleteForm" action="" method="post">
+	<input type="hidden" name="_method" value="DELETE">
+</form>
 
 <c:if test="${empty requestScope.userList }">
-		没有任何员工信息.
+		没有用户信息.
 </c:if>
-
 <c:if test="${!empty requestScope.userList }">
 		<table border="1" cellpadding="10" cellspacing="0">
 			<tr>
@@ -35,12 +48,12 @@
 					<td>${userList.address.city }</td>
 					<td>${userList.address.street }</td>
 					<td><a href="user/${userList.id}">Edit</a></td>
-					<td><a class="delete" href="user/${userList.id}">Delete</a></td>
+					<td><a class="delete" href="userDelete/${userList.id}">Delete</a></td>
 				</tr>
 			</c:forEach>
 		</table>
 </c:if>
-<a href="addUser">Add New Employee</a>
+<a href="user">添加用户</a>
 
 </body>
 </html>
