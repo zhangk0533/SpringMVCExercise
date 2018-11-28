@@ -1,9 +1,13 @@
 package com.zhangk.controller;
 
+import java.util.List;
+
 import javax.annotation.Resource;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.zhangk.entity.User;
 import com.zhangk.service.UserService;
@@ -30,6 +34,13 @@ public class TestDB {
 		
 		
 		return "success";
+	}
+	
+	
+	@ResponseBody
+	@RequestMapping("/testJson")
+	public List<User> testJson(){
+		return userService.showList();
 	}
 	
 
