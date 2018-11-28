@@ -1,22 +1,47 @@
 package com.zhangk.entity;
 
+import java.util.Date;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Past;
+
+import org.hibernate.validator.constraints.Email;
+import org.hibernate.validator.constraints.NotEmpty;
+import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
 public class User {
-	private int id;
-	private String name;
-	private int age;
-	private int gender;
 	private Address address;
+	
+	private Integer age;
+	
+	@Past
+	@DateTimeFormat(pattern="yyyy-MM-dd")
+	private Date birth;
+	@Email
+	private String email;
+	private Integer gender;
+	private Integer id;
+	
+	@NotEmpty
+	private String name;
+	
 	private String password;
 
-	public User(int id, String name, int age, int gender, Address address, String password) {
+	private Float salary;
+	
+	
+	
+	public User() {}
+
+	public User(Integer id, String name, Integer age, Integer gender, Address address, String password, Date birth,
+			String email, Float salary) {
 		super();
 		this.id = id;
 		this.name = name;
@@ -24,42 +49,66 @@ public class User {
 		this.gender = gender;
 		this.address = address;
 		this.password = password;
+		this.birth = birth;
+		this.email = email;
+		this.salary = salary;
 	}
 
-	public User() {
+	@Override
+	public String toString() {
+		return "User [id=" + id + ", name=" + name + ", age=" + age + ", gender=" + gender + ", address=" + address
+				+ ", password=" + password + ", birth=" + birth + ", email=" + email + ", salary=" + salary + "]";
 	}
 
-	public String getPassword() {
-		return password;
-	}
-
-	public void setPassword(String password) {
-		this.password = password;
-	}
-
-	public int getAge() {
-		return age;
-	}
-
-	public void setAge(int age) {
-		this.age = age;
-	}
-
-	public int getGender() {
-		return gender;
-	}
-
-	public void setGender(int gender) {
-		this.gender = gender;
-	}
-
-	@OneToOne(cascade = CascadeType.ALL)
+	@OneToOne
 	public Address getAddress() {
 		return address;
 	}
 
 	public void setAddress(Address address) {
 		this.address = address;
+	}
+
+	public Integer getAge() {
+		return age;
+	}
+
+	public void setAge(Integer age) {
+		this.age = age;
+	}
+
+	public Date getBirth() {
+		return birth;
+	}
+
+	public void setBirth(Date birth) {
+		this.birth = birth;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public Integer getGender() {
+		return gender;
+	}
+
+	public void setGender(Integer gender) {
+		this.gender = gender;
+	}
+
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
 	}
 
 	public String getName() {
@@ -70,20 +119,19 @@ public class User {
 		this.name = name;
 	}
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	public int getId() {
-		return id;
+	public String getPassword() {
+		return password;
 	}
 
-	public void setId(int id) {
-		this.id = id;
+	public void setPassword(String password) {
+		this.password = password;
 	}
 
-	@Override
-	public String toString() {
-		return "User [id=" + id + ", name=" + name + ", age=" + age + ", gender=" + gender + ", address=" + address
-				+ ", password=" + password + "]";
+	public Float getSalary() {
+		return salary;
 	}
 
+	public void setSalary(Float salary) {
+		this.salary = salary;
+	}
 }

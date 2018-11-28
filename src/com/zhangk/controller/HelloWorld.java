@@ -35,12 +35,12 @@ public class HelloWorld {
 		return "success";
 	}
 
-	@ModelAttribute
+	/*@ModelAttribute
 	public void getUser(Model model) {
 		Address address = new Address("zobo", "11-1");
-		User user = new User(1, "zhangk", 11, 0, address, "123456");
+		User user = new User(1, "zhangk", 11, 0, address);
 		model.addAttribute("user", user);
-	}
+	}*/
 	
 	@RequestMapping("/testUserService")
 	public String testUserService(User user){

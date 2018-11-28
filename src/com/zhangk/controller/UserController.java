@@ -4,8 +4,12 @@ import java.util.List;
 import java.util.Map;
 
 import javax.annotation.Resource;
+import javax.validation.Valid;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -37,10 +41,7 @@ public class UserController {
 			map.put("user", user);
 			System.out.println(user);
 		}
-		
 	}
-
-	
 	
 	@RequestMapping("/userList")
 	public String showList(Map<String,List<User>> map){
@@ -67,7 +68,14 @@ public class UserController {
 	}
 	
 	@RequestMapping(value="/userSave",method=RequestMethod.POST)
-	public String userSave(User user){
+	public String userSave(@Valid User user,BindingResult binder){
+		
+		if(binder.getErrorCount()>0){
+			for(FieldError error: binder.getFieldErrors()){
+				System.out.println(error.getField()+":"+error.getDefaultMessage());
+			}
+			return "input";
+		}
 		
 		userService.addOrUpdate(user);
 		
@@ -87,6 +95,17 @@ public class UserController {
 		userService.delete(user);
 		
 		return "redirect:/userList";
+	}
+	
+	@RequestMapping("/userConvert")
+	public String testConvert(@RequestParam("user") User user){
+		
+		System.out.println(user);
+		
+		userService.addOrUpdate(user);
+		
+		return "redirect:/userList";
+		
 	}
 	
 	

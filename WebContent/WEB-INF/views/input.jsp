@@ -30,6 +30,7 @@
 </form>
  -->
 
+<!-- 
 <c:if test="${user.id==0 }">
 	<form action="userSave" method="post">
 
@@ -38,7 +39,8 @@
 		gender:<input type="radio" name="gender" value="0">ÄĞ
 			<input type="radio" name="gender" value="1">Å®
 		<br>
-		
+		birth:<input type="text" name="birth"> <br>
+		salary:<input type="text" name="salary">
 		
 		city:<input type="text" name="address.city" ><br>
 		street:<input type="text" name="address.street" ><br>
@@ -47,12 +49,15 @@
 	</form>
 
 </c:if>
+ -->
 
-<c:if test="${user.id!=0 }">
-	<form:form action="${pageContext.request.contextPath }/userUpdate" method="POST" modelAttribute="user" >
-	<input type="hidden" name="_method" value="PUT" >
+
+	<form:form action="${pageContext.request.contextPath }/userSave" method="POST" modelAttribute="user" >
+	<c:if test="${user.id!=0 }">
+		<input type="hidden" name="_method" value="PUT" >
+	</c:if>
 	<form:hidden path="id"/><br>
-	name:<form:input path="name"/><br>
+	name:<form:input path="name"/><form:errors path="name"></form:errors> <br>
 	age:<form:input path="age"/><br>
 	<%
 		Map<String,String> genders = new HashMap();
@@ -65,7 +70,14 @@
 	street:<form:input path="address.street"/><br>
 	<input type="submit" value="Submit">
 	</form:form>
-</c:if>
+
+
+<form action="userConvert">
+
+	<input type="text" name="user">
+	<input type="submit" value="submit">
+
+</form>
 
 </body>
 </html>
