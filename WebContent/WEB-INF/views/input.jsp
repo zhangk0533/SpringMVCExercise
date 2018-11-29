@@ -52,8 +52,12 @@
  -->
 
 
+
+	
+	
 	<form:form action="${pageContext.request.contextPath }/userSave" method="POST" modelAttribute="user" >
-	<c:if test="${user.id!=0 }">
+	
+	<c:if test="${user.id!=null }">
 		<input type="hidden" name="_method" value="PUT" >
 	</c:if>
 	<form:hidden path="id"/><br>

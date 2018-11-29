@@ -10,26 +10,18 @@
 <script type="text/javascript">
 	$(function(){
 		$(".testJson").click(function(){
-			
 			var url = this.href;
 			var args = {};
-			
 			$.post(url,args,function(data){
-				
-				for(int i=0;i<data.length;i++){
+				alert(data);
+				for(var i=0;i<data.length;i++){
 					var id = data[i].id;
 					var name = data[i].name;
-					
 					alert(id+":"+name);
 				}
-				
-				
 			});
-			
 			return false;
-			
 		});
-		
 	})
 </script>
 

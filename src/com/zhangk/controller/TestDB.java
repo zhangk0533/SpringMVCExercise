@@ -39,8 +39,8 @@ public class TestDB {
 	
 	@ResponseBody
 	@RequestMapping("/testJson")
-	public List<User> testJson(){
-		return userService.showList();
+	public User testJson(){
+		return userService.get(1);
 	}
 	
 

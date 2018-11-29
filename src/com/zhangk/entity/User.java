@@ -59,7 +59,7 @@ public class User {
 				+ ", password=" + password + ", birth=" + birth + ", email=" + email + ", salary=" + salary + "]";
 	}
 
-	@OneToOne
+	@OneToOne(cascade=CascadeType.ALL)
 	public Address getAddress() {
 		return address;
 	}
