@@ -1,0 +1,1 @@
+https://account.jinshuju.com/oauth/authorize?client_id=792e0947396c0a16451f9b3c3d3e7561ceb12f5921dd74db5c98884cd78aa0b1&redirect_uri=http://222.134.77.23:8091/k3cloud/services/LUTAIWebService.asmx/GenerateJSJToken&response_type=code&state=k3cloud&scope=public+profile+forms+read_entries+form_setting

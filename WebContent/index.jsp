@@ -29,5 +29,17 @@
 		<input type="submit" value="submit">
 	</form>
 	
+	<form action="testHttpMessageConverter" method="post" enctype="multipart/form-data">
+		
+		<input type="file" name=file>
+		<input type="text" name="desc">
+		
+		<input type="submit" value="submit">
+	
+	
+	</form>
+	
+	
+	
 </body>
 </html>
